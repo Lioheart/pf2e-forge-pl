@@ -14,7 +14,7 @@ Hooks.on('renderSettings', (app, html, data) => {
         }
 
         // Zmiana "Back to Join Screen" na "Powrót na ekran startowy"
-        const screenButton = html.find('button[data-action="forgevtt"]');
+        const screenButton = html.find('button[data-action="logout"]');
         if (screenButton.length) {
             screenButton.html('<i class="fas fa-door-closed"></i> Powrót na ekran startowy');
         }
