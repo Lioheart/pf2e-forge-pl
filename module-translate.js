@@ -59,4 +59,10 @@ Hooks.on('renderApplication', (app, html) => {
     if (backToForgeButton.length) {
         backToForgeButton.text('Powrót do Forge');
     }
+
+    // Zmiana "Back to Join Screen" na "Powrót na ekran startowy"
+    const backToScreenButton = html.find('.menu-logout h4');
+    if (backToScreenButton.length) {
+        backToScreenButton.text('Powrót na ekran startowy');
+    }
 });
