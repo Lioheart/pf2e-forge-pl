@@ -12,6 +12,12 @@ Hooks.on('renderSettings', (app, html, data) => {
         if (forgeButton.length) {
             forgeButton.html('<i class="fas fa-home"></i> Powrót do Forge');
         }
+
+        // Zmiana "Back to Join Screen" na "Powrót na ekran startowy"
+        const screenButton = html.find('button[data-action="forgevtt"]');
+        if (screenButton.length) {
+            screenButton.html('<i class="fas fa-door-closed"></i> Powrót na ekran startowy');
+        }
     }, 500); // Czas opóźnienia, który można dostosować
     console.log('Załadowano moduł niestandardowy!');
 });
@@ -39,5 +45,3 @@ Hooks.on('renderDialog', (app, html, data) => {
         $(this).html(buttonText.replace('As Temporary Player', 'Jako gracz tymczasowy'));
     });
 });
-
-
