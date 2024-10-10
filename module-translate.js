@@ -1,17 +1,21 @@
 // Przyciski Forge na zakładce Ustawienia
 Hooks.on('renderSettings', (app, html, data) => {
-    // Zmiana "Join Game As" na "Dołącz jako..."
-    const joinButton = html.find('button[data-action="join-as"]');
-    if (joinButton.length) {
-        joinButton.html('<i class="fas fa-random"></i> Dołącz jako...');
-    }
+    setTimeout(() => {
+        // Zmiana "Join Game As" na "Dołącz jako..."
+        const joinButton = html.find('button[data-action="join-as"]');
+        if (joinButton.length) {
+            joinButton.html('<i class="fas fa-random"></i> Dołącz jako...');
+        }
 
-    // Zmiana "Back to The Forge" na "Powrót do Forge"
-    const forgeButton = html.find('button[data-action="forgevtt"]');
-    if (forgeButton.length) {
-        forgeButton.html('<i class="fas fa-home"></i> Powrót do Forge');
-    }
+        // Zmiana "Back to The Forge" na "Powrót do Forge"
+        const forgeButton = html.find('button[data-action="forgevtt"]');
+        if (forgeButton.length) {
+            forgeButton.html('<i class="fas fa-home"></i> Powrót do Forge');
+        }
+    }, 500); // Czas opóźnienia, który można dostosować
+    console.log('Załadowano moduł niestandardowy!');
 });
+
 
 
 // Okno Dołącz jako tymczasowy gracz
