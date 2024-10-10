@@ -45,3 +45,18 @@ Hooks.on('renderDialog', (app, html, data) => {
         $(this).html(buttonText.replace('As Temporary Player', 'Jako gracz tymczasowy'));
     });
 });
+
+// Pod Escape
+Hooks.on('renderApplication', (app, html) => {
+    // Zmiana "Join Game As" na "Dołącz jako..."
+    const joinAsButton = html.find('.menu-join-as h4');
+    if (joinAsButton.length) {
+        joinAsButton.text('Dołącz jako...');
+    }
+
+    // Zmiana "Back to The Forge" na "Powrót do Forge"
+    const backToForgeButton = html.find('.menu-forge h4');
+    if (backToForgeButton.length) {
+        backToForgeButton.text('Powrót do Forge');
+    }
+});
