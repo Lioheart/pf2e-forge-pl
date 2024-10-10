@@ -1,0 +1,23 @@
+{
+  "id": "pf2e-forge-pl",
+  "title": "Spolszczenie Forge",
+  "version": "0.1",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "12.331"
+  },
+  "authors": [
+    {
+      "name": "Lioheart",
+      "discord": "lioheart77",
+      "flags": {}
+    }
+  ],
+  "description": "Spolszczenie Forge",
+  "esmodules": [
+    "module-translate.js"
+  ],  
+  "manifest": "https://raw.githubusercontent.com/Lioheart/pf2e-forge-pl/master/module.json",
+  "download": "https://github.com/Lioheart/pf2e-forge-pl/archive/refs/heads/main.zip",
+  "url": "https://github.com/Lioheart/pf2e-forge-pl"
+}
