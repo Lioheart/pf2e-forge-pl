@@ -1,17 +1,18 @@
 // Przyciski Forge na zakładce Ustawienia
-Hooks.on('renderPlayerList', (app, html, data) => {
-    // Tłumaczenie "Join Game As"
+Hooks.on('renderSettings', (app, html, data) => {
+    // Zmiana "Join Game As" na "Dołącz jako..."
     const joinButton = html.find('button[data-action="join-as"]');
     if (joinButton.length) {
-        joinButton[0].innerHTML('<i class="fas fa-random"></i> Dołącz jako...');
+        joinButton.html('<i class="fas fa-random"></i> Dołącz jako...');
     }
 
-    // Tłumaczenie "Back to The Forge"
+    // Zmiana "Back to The Forge" na "Powrót do Forge"
     const forgeButton = html.find('button[data-action="forgevtt"]');
     if (forgeButton.length) {
-        forgeButton[0].innerHTML('<i class="fas fa-home"></i> Powrót do Forge');
+        forgeButton.html('<i class="fas fa-home"></i> Powrót do Forge');
     }
 });
+
 
 // Okno Dołącz jako tymczasowy gracz
 Hooks.on('renderJoinGameDialog', (app, html, data) => {
