@@ -19,24 +19,25 @@ Hooks.on('renderSettings', (app, html, data) => {
 
 
 // Okno Dołącz jako tymczasowy gracz
-Hooks.on('renderJoinGameDialog', (app, html, data) => {
-    // Tłumaczenie "Join Game As"
-    const title = html.find('h4.window-title');
-    if (title.length) {
-        title[0].innerHTML("Dołącz jako");
+Hooks.on('renderDialog', (app, html, data) => {
+    // Zmiana "Join Game As" na "Dołącz jako gracz"
+    const title = html.find('.window-title');
+    if (title.length && title.text().includes('Join Game As')) {
+        title.text('Dołącz jako gracz');
     }
 
-    // Tłumaczenie "Select a player to re-join the game as:"
-    const selectText = html.find('.dialog-content p');
-    if (selectText.length) {
-        selectText[0].innerHTML("Wybierz gracza, aby dołączyć tymczasowo jako gracz do gry:");
+    // Zmiana "Select a player to re-join the game as :" na "Wybierz gracza, aby dołączyć tymczasowo jako gracz do gry:"
+    const selectPlayerText = html.find('p');
+    if (selectPlayerText.length && selectPlayerText.text().includes('Select a player to re-join the game as')) {
+        selectPlayerText.text('Wybierz gracza, aby dołączyć tymczasowo jako gracz do gry:');
     }
 
-    // Tłumaczenie "As Temporary Player"
-    const buttons = html.find('button[data-join-as="temp"]');
-    buttons.each(function () {
-        let buttonText = $(this).text();
-        $(this).text(buttonText.replace("As Temporary Player", "Jako tymczasowy gracz"));
+    // Zmiana "As Temporary Player" na "Jako gracz tymczasowy"
+    const tempPlayerButtons = html.find('button[data-join-as="temp"]');
+    tempPlayerButtons.each(function () {
+        const buttonText = $(this).html();
+        $(this).html(buttonText.replace('As Temporary Player', 'Jako gracz tymczasowy'));
     });
 });
+
 
