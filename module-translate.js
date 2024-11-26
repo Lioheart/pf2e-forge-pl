@@ -22,8 +22,6 @@ Hooks.on('renderSettings', (app, html, data) => {
     console.log('Załadowano moduł niestandardowy!');
 });
 
-
-
 // Okno Dołącz jako tymczasowy gracz
 Hooks.on('renderDialog', (app, html, data) => {
     // Zmiana "Join Game As" na "Dołącz jako gracz"
@@ -64,5 +62,58 @@ Hooks.on('renderApplication', (app, html) => {
     const backToScreenButton = html.find('.menu-logout h4');
     if (backToScreenButton.length) {
         backToScreenButton.text('Powrót na ekran startowy');
+    }
+});
+
+// Hook nasłuchujący na rozpoczęcie walki
+Hooks.on("combatStart", async (combat) => {
+    console.log("Walka rozpoczęta:", combat);
+
+    // Dane efektu na podstawie JSON-a
+    const effectData = {
+        name: "Przed turą",
+        type: "effect",
+        system: {
+            description: {
+                value: "<p>Nie możesz użyć reakcji, do momentu rozpoczęcia Twojej tury.</p>"
+            },
+            level: {
+                value: 1
+            },
+            duration: {
+                value: 0,
+                unit: "rounds",
+                expiry: "turn-start",
+                sustained: false
+            },
+            start: {
+                value: 0,
+                initiative: null
+            },
+            tokenIcon: {
+                show: true
+            }
+        },
+        img: "icons/svg/cancel.svg", // Ikona efektu
+        flags: {
+            exportSource: {
+                world: "pf2e",
+                system: "pf2e",
+                coreVersion: "12.331",
+                systemVersion: "6.7.0"
+            }
+        }
+    };
+
+    // Iteruj przez uczestników walki
+    for (const combatant of combat.combatants) {
+        const actor = combatant.actor;
+
+        if (actor) {
+            console.log(`Nakładanie efektu na: ${actor.name}`);
+
+            // Tworzenie efektu na aktorze
+            await actor.createEmbeddedDocuments("Item", [effectData]);
+        }
     }
 });
