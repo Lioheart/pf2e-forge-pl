@@ -67,7 +67,6 @@ Hooks.on('renderApplication', (app, html) => {
 
 // Hook nasłuchujący na rozpoczęcie walki
 Hooks.on("combatStart", async (combat) => {
-    console.log("Walka rozpoczęta:", combat);
 
     // Dane efektu na podstawie JSON-a
     const effectData = {
@@ -110,8 +109,6 @@ Hooks.on("combatStart", async (combat) => {
         const actor = combatant.actor;
 
         if (actor) {
-            console.log(`Nakładanie efektu na: ${actor.name}`);
-
             // Tworzenie efektu na aktorze
             await actor.createEmbeddedDocuments("Item", [effectData]);
         }
