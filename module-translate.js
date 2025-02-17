@@ -67,6 +67,11 @@ Hooks.on('renderApplication', (app, html) => {
 
 // Hook nasłuchujący na rozpoczęcie walki
 Hooks.on("combatStart", async (combat) => {
+    // Pobierz listę uczestników posortowaną według inicjatywy
+    const sortedCombatants = combat.combatants.contents.sort((a, b) => b.initiative - a.initiative);
+
+    // Znajdź pierwszego uczestnika
+    const firstCombatant = sortedCombatants[0];
 
     // Dane efektu na podstawie JSON-a
     const effectData = {
@@ -76,22 +81,15 @@ Hooks.on("combatStart", async (combat) => {
             description: {
                 value: "<p>Nie możesz użyć reakcji, do momentu rozpoczęcia Twojej tury.</p>"
             },
-            level: {
-                value: 1
-            },
+            level: { value: 1 },
             duration: {
                 value: 0,
                 unit: "rounds",
                 expiry: "turn-start",
                 sustained: false
             },
-            start: {
-                value: 0,
-                initiative: null
-            },
-            tokenIcon: {
-                show: true
-            }
+            start: { value: 0, initiative: null },
+            tokenIcon: { show: true }
         },
         img: "icons/svg/cancel.svg", // Ikona efektu
         flags: {
@@ -104,12 +102,12 @@ Hooks.on("combatStart", async (combat) => {
         }
     };
 
-    // Iteruj przez uczestników walki
-    for (const combatant of combat.combatants) {
-        const actor = combatant.actor;
+    // Iteruj przez uczestników walki, pomijając pierwszego
+    for (const combatant of sortedCombatants) {
+        if (combatant === firstCombatant) continue; // Pomijamy pierwszego w kolejności
 
+        const actor = combatant.actor;
         if (actor) {
-            // Tworzenie efektu na aktorze
             await actor.createEmbeddedDocuments("Item", [effectData]);
         }
     }
