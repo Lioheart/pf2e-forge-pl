@@ -1,7 +1,7 @@
 {
   "id": "pf2e-forge-pl",
   "title": "Spolszczenie Forge",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "compatibility": {
     "minimum": "12",
     "verified": "12"
